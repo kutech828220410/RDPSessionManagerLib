@@ -24,7 +24,7 @@ namespace sendemail_batch
             string[] commandLineArgs = Environment.GetCommandLineArgs();
             string name = commandLineArgs[1];
             name = CapitalizeFirstLetter(name);
-            if (name.ToUpper() != "Thomas".ToUpper() && name.ToUpper() != "Evan".ToUpper() && name.ToUpper() != "Momo".ToUpper())
+            if (name.ToUpper() != "Thomas".ToUpper() && name.ToUpper() != "Evan".ToUpper() && name.ToUpper() != "Momo".ToUpper() && name.ToUpper() != "Chris".ToUpper())
             {
                 Console.WriteLine($"使用者名稱錯誤 : {name}");
                 Environment.ExitCode = -2;
@@ -33,18 +33,33 @@ namespace sendemail_batch
             }
             string user = "hson_rdp";
             string pwd = PasswordGenerator.GeneratePassword(20);
-            UserAccountManager.SetUserPasswordEx(user, pwd);
-            RDPLogout.LogoutAllRDPSessions();
+
+            try
+            {
+                UserAccountManager.SetUserPasswordEx(user, pwd);
+                RDPLogout.LogoutAllRDPSessions();
+                Environment.ExitCode = -3;
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"RDPSessionManager set error: {ex.Message}");
+                Environment.ExitCode = -3;
+                return;
+            }
+          
 
             List<string> recipients = new List<string>
             {
                 "hson_evan@outlook.com",
-                "hson_dell@outlook.com",
-                "hson_UI@outlook.com",
+                //"hson_dell@outlook.com",
+                //"hson_UI@outlook.com",
+                //"hongsensales1@outlook.com",
             };
 
             string subject = "[鴻森智能科技] 密碼更動";
-            string body = $"Dear {name}:\n\nYour account password has been successfully changed.\n ID : {user} \n password : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
+            string body = $"Dear {name}:\n\nYour account password has been successfully changed.\nID : {user} \npassword : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
             string attachmentPath = ""; // 替换为附件的实际路径
 
             try

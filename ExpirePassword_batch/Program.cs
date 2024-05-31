@@ -13,7 +13,8 @@ namespace ExpirePassword_batch
             string currentUser = Environment.UserName;
             Console.WriteLine($"currentUser : {currentUser}");
             UserAccountManager.ExpirePasswordOnNextLogon(currentUser);
-            Console.ReadKey();
+            System.Threading.Thread.Sleep(2000);
+            //Console.ReadKey();
         }
     }
 }
