@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.DirectoryServices;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,34 +13,38 @@ using System.Text;
 using System.Diagnostics;
 using RDPSessionManager;
 using MyEmail;
-namespace UserAccountManagerLib
+
+namespace sendemail_batch
 {
-
-
-    public partial class Form1 : Form
+    class Program
     {
-        public Form1()
+        static void Main(string[] args)
         {
-            InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            string name = commandLineArgs[1];
+            name = CapitalizeFirstLetter(name);
+            if (name.ToUpper() != "Thomas".ToUpper() && name.ToUpper() != "Evan".ToUpper() && name.ToUpper() != "Momo".ToUpper())
+            {
+                Console.WriteLine($"使用者名稱錯誤 : {name}");
+                Environment.ExitCode = -2;
+                //return "使用者名稱錯誤";
+                return;
+            }
             string user = "hson_rdp";
             string pwd = PasswordGenerator.GeneratePassword(20);
-
-            UserAccountManager.SetUserPassword(user, pwd);
-            //UserAccountManager.ExpirePasswordOnNextLogon(user);
+            UserAccountManager.SetUserPasswordEx(user, pwd);
             RDPLogout.LogoutAllRDPSessions();
 
             List<string> recipients = new List<string>
             {
                 "hson_evan@outlook.com",
+                "hson_dell@outlook.com",
+                "hson_UI@outlook.com",
             };
 
             string subject = "[鴻森智能科技] 密碼更動";
-            string body = $"\n\nYour account password has been successfully changed.\n ID : {user} \n password : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
+            string body = $"Dear {name}:\n\nYour account password has been successfully changed.\n ID : {user} \n password : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
             string attachmentPath = ""; // 替换为附件的实际路径
 
             try
@@ -50,13 +53,24 @@ namespace UserAccountManagerLib
                 EmailSender emailSender = new EmailSender("smtp-mail.outlook.com", 587, "hson-service@outlook.com", "KuT1Ch@75511");
                 emailSender.SendEmail(recipients, subject, body, true);
                 Console.WriteLine("Emails sent successfully.");
+                Environment.ExitCode = 0;
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error sending emails: {ex.Message}");
-           
+                Environment.ExitCode = -1;
+
             }
+        }
+        public static string CapitalizeFirstLetter(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            return char.ToUpper(input[0]) + input.Substring(1);
         }
     }
 }

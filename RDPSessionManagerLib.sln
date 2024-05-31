@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDPSessionManagerLib", "RDP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForm", "TestForm\TestForm.csproj", "{AFF80E45-6C10-462E-B612-D8A021E648C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpirePassword_batch", "ExpirePassword_batch\ExpirePassword_batch.csproj", "{D8C2AE35-F786-4FF8-9A5F-AAAD67DECC26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sendemail_batch", "sendemail_batch\sendemail_batch.csproj", "{4AAEC37D-DEB7-4D58-BDD3-8D091F95AF94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{AFF80E45-6C10-462E-B612-D8A021E648C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFF80E45-6C10-462E-B612-D8A021E648C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFF80E45-6C10-462E-B612-D8A021E648C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C2AE35-F786-4FF8-9A5F-AAAD67DECC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C2AE35-F786-4FF8-9A5F-AAAD67DECC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C2AE35-F786-4FF8-9A5F-AAAD67DECC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C2AE35-F786-4FF8-9A5F-AAAD67DECC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AAEC37D-DEB7-4D58-BDD3-8D091F95AF94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAEC37D-DEB7-4D58-BDD3-8D091F95AF94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAEC37D-DEB7-4D58-BDD3-8D091F95AF94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAEC37D-DEB7-4D58-BDD3-8D091F95AF94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
