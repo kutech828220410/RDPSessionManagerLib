@@ -39,7 +39,10 @@ namespace UserAccountManagerLib
             {
                 "hson_evan@outlook.com",
             };
-
+            List<string> cc = new List<string>
+            {
+              
+            };
             string subject = "[鴻森智能科技] 密碼更動";
             string body = $"\n\nYour account password has been successfully changed.\n ID : {user} \n password : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
             string attachmentPath = ""; // 替换为附件的实际路径
@@ -48,7 +51,7 @@ namespace UserAccountManagerLib
             {
                 // 使用你的 Outlook 帐号信息初始化 EmailSender
                 EmailSender emailSender = new EmailSender("smtp-mail.outlook.com", 587, "hson-service@outlook.com", "KuT1Ch@75511");
-                emailSender.SendEmail(recipients, subject, body, true);
+                emailSender.SendEmail(recipients,cc, subject, body, true);
                 Console.WriteLine("Emails sent successfully.");
 
             }

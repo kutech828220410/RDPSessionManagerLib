@@ -20,9 +20,10 @@ namespace sendemail_batch
     {
         static void Main(string[] args)
         {
-            
+
             string[] commandLineArgs = Environment.GetCommandLineArgs();
             string name = commandLineArgs[1];
+            //string name = "momo";
             name = CapitalizeFirstLetter(name);
             if (name.ToUpper() != "Thomas".ToUpper() && name.ToUpper() != "Evan".ToUpper() && name.ToUpper() != "Momo".ToUpper() && name.ToUpper() != "Chris".ToUpper())
             {
@@ -48,16 +49,27 @@ namespace sendemail_batch
                 Environment.ExitCode = -3;
                 return;
             }
-          
 
-            List<string> recipients = new List<string>
+           List<string> cc = new List<string>();
+           List<string> recipients = new List<string>
             {
                 "hson_evan@outlook.com",
                 //"hson_dell@outlook.com",
                 //"hson_UI@outlook.com",
                 //"hongsensales1@outlook.com",
             };
-
+            if (name.ToUpper() == "Thomas".ToUpper())
+            {
+                cc.Add("hson_UI@outlook.com");
+            }
+            if (name.ToUpper() == "Momo".ToUpper())
+            {
+                cc.Add("hson_dell@outlook.com");
+            }
+            if (name.ToUpper() == "Chris".ToUpper())
+            {
+                cc.Add("hongsensales1@outlook.com");
+            }
             string subject = "[鴻森智能科技] 密碼更動";
             string body = $"Dear {name}:\n\nYour account password has been successfully changed.\nID : {user} \npassword : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
             string attachmentPath = ""; // 替换为附件的实际路径
@@ -66,7 +78,7 @@ namespace sendemail_batch
             {
                 // 使用你的 Outlook 帐号信息初始化 EmailSender
                 EmailSender emailSender = new EmailSender("smtp-mail.outlook.com", 587, "hson-service@outlook.com", "KuT1Ch@75511");
-                emailSender.SendEmail(recipients, subject, body, true);
+                emailSender.SendEmail(recipients,cc, subject, body, true);
                 Console.WriteLine("Emails sent successfully.");
                 Environment.ExitCode = 0;
 
