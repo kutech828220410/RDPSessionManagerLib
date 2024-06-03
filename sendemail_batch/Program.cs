@@ -25,7 +25,11 @@ namespace sendemail_batch
             string name = commandLineArgs[1];
             //string name = "momo";
             name = CapitalizeFirstLetter(name);
-            if (name.ToUpper() != "Thomas".ToUpper() && name.ToUpper() != "Evan".ToUpper() && name.ToUpper() != "Momo".ToUpper() && name.ToUpper() != "Chris".ToUpper())
+            if (name.ToUpper() != "Thomas".ToUpper() 
+                && name.ToUpper() != "Evan".ToUpper() 
+                && name.ToUpper() != "Momo".ToUpper() 
+                && name.ToUpper() != "Chris".ToUpper()  
+                && name.ToUpper() != "Anna".ToUpper())
             {
                 Console.WriteLine($"使用者名稱錯誤 : {name}");
                 Environment.ExitCode = -2;
@@ -69,6 +73,10 @@ namespace sendemail_batch
             if (name.ToUpper() == "Chris".ToUpper())
             {
                 cc.Add("hongsensales1@outlook.com");
+            }
+            if (name.ToUpper() == "Anna".ToUpper())
+            {
+                cc.Add("hson_software1@outlook.com");
             }
             string subject = "[鴻森智能科技] 密碼更動";
             string body = $"Dear {name}:\n\nYour account password has been successfully changed.\nID : {user} \npassword : {pwd}\n\nBest regards,\n鴻森智能科技有限公司 Corp.";
